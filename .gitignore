@@ -1,0 +1,5 @@
+./test/
+./venv/
+*/__pychache__/
+.git
+.idea

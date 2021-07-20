@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="main" role="main">
+    <div class="content article-list">
+        {% for article in article_list %}
+            <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="article-header"><h1 itemprop="name"><a class="article-title"
+                                                               href="{{ article.url }}">{{ article.title }}</a>
+            </h1></div>
+            <p class="article-meta"><span class="article-date"><i class="icon icon-calendar-check"></i> <a
+                    href="/archives" class="article-date"><time
+                    datetime="{{ article.create_time }}" itemprop="datePublished">{{ article.pub_date }}</time></a></span>
+                    {% for cate in article.cate_list %}
+                        <span class="article-category"><i class="icon icon-folder"></i> <a class="article-category-link" href="/categories">{{ cate.name }}</a></span>
+                    {%  endfor %}
+                    {% for tag in article.tag_list %}
+                        <span class="article-tag"><i class="icon icon-tags"></i> <a class="article-tag-link" href="/tags">{{ tag.name }}</a></span>
+                    {%  endfor %}
+                <span class="post-comment"><i class="icon icon-comment"></i> <a
+                        href="{{ article.url }}#comments" class="article-comment-link">评论</a></span>
+                <span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: {{ article.text_length }}(字)</span> <span
+                        class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: {{ article.read_time }}(分)</span></p>
+        </article>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
